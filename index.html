@@ -1,861 +1,284 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MARKET BY JOJOSHOP</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        :root {
-            --primary: #6777ef;
-            --primary-dark: #5156be;
-            --secondary: #f4f6f9;
-            --secondary-dark: #1a1a2e;
-            --dark: #191d21;
-            --dark-dark: #0f0f1a;
-            --light: #ffffff;
-            --light-dark: #e6e6e6;
-            --success: #63ed7a;
-            --danger: #fc544b;
-            --warning: #ffa426;
-            --text: #34395e;
-            --text-dark: #d1d1d1;
-            --card-bg: #ffffff;
-            --card-bg-dark: #16213e;
-            --card-shadow: 0 5px 30px rgba(0, 0, 0, 0.05);
-            --card-shadow-dark: 0 5px 30px rgba(0, 0, 0, 0.2);
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-            transition: background-color 0.3s ease, color 0.1s ease;
-        }
-        
-        body {
-            background-color: var(--secondary);
-            color: var(--text);
-            line-height: 1.6;
-        }
-        
-        body.dark-mode {
-            background-color: var(--secondary-dark);
-            color: var(--text-dark);
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: var(--light);
-            padding: 20px 0;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .dark-mode header {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo i {
-            margin-right: 10px;
-            font-size: 28px;
-        }
-        
-        .nav-right {
-            display: flex;
-            align-items: center;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 30px;
-        }
-        
-        nav ul li a {
-            color: var(--light);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        nav ul li a:hover {
-            opacity: 0.8;
-        }
-        
-        .theme-toggle {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            margin-left: 20px;
-            color: var(--light);
-            transition: all 0.3s ease;
-        }
-        
-        .theme-toggle:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: rotate(30deg);
-        }
-        
-        .hero {
-            padding: 80px 0;
-            text-align: center;
-            background: url('https://images.unsplash.com/photo-1639762681057-408e52192e55?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
-            position: relative;
-            color: var(--light);
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-        
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-        
-        .hero p {
-            font-size: 20px;
-            max-width: 700px;
-            margin: 0 auto 30px;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background-color: var(--primary);
-            color: var(--light);
-            border: none;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 500;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(103, 119, 239, 0.3);
-        }
-        
-        .dark-mode .btn {
-            box-shadow: 0 4px 15px rgba(103, 119, 239, 0.5);
-        }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(103, 119, 239, 0.4);
-        }
-        
-        .dark-mode .btn:hover {
-            box-shadow: 0 6px 20px rgba(103, 119, 239, 0.6);
-        }
-        
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid var(--light);
-            margin-left: 15px;
-        }
-        
-        .btn-outline:hover {
-            background-color: var(--light);
-            color: var(--primary);
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .section-title h2 {
-            font-size: 36px;
-            color: var(--text);
-            margin-bottom: 15px;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .dark-mode .section-title h2 {
-            color: var(--light-dark);
-        }
-        
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: var(--primary);
-        }
-        
-        .section-title p {
-            color: var(--text);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .dark-mode .section-title p {
-            color: var(--text-dark);
-        }
-        
-        .pricing {
-            padding: 80px 0;
-        }
-        
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-        
-        .pricing-card {
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: var(--card-shadow);
-            transition: all 0.3s ease;
-        }
-        
-        .dark-mode .pricing-card {
-            background-color: var(--card-bg-dark);
-            box-shadow: var(--card-shadow-dark);
-        }
-        
-        .pricing-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        .dark-mode .pricing-card:hover {
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        .pricing-header {
-            background-color: var(--primary);
-            color: var(--light);
-            padding: 30px;
-            text-align: center;
-        }
-        
-        .pricing-header h3 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-        
-        .pricing-price {
-            font-size: 40px;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-        
-        .pricing-period {
-            font-size: 14px;
-            opacity: 0.8;
-        }
-        
-        .pricing-body {
-            padding: 30px;
-        }
-        
-        .pricing-features {
-            list-style: none;
-            margin-bottom: 30px;
-        }
-        
-        .pricing-features li {
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            align-items: center;
-            color: var(--text);
-        }
-        
-        .dark-mode .pricing-features li {
-            color: var(--text-dark);
-            border-bottom: 1px solid #2a2a3c;
-        }
-        
-        .pricing-features li:last-child {
-            border-bottom: none;
-        }
-        
-        .pricing-features li i {
-            color: var(--success);
-            margin-right: 10px;
-            font-size: 14px;
-        }
-        
-        .pricing-footer {
-            padding: 0 30px 30px;
-            text-align: center;
-        }
-        
-        .btn-block {
-            display: block;
-            width: 100%;
-        }
-        
-        .contact {
-            padding: 80px 0;
-            background-color: var(--card-bg);
-        }
-        
-        .dark-mode .contact {
-            background-color: var(--card-bg-dark);
-        }
-        
-        .contact-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-        
-        .contact-card {
-            background-color: var(--secondary);
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        
-        .dark-mode .contact-card {
-            background-color: var(--dark-dark);
-        }
-        
-        .contact-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-        }
-        
-        .dark-mode .contact-card:hover {
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        }
-        
-        .contact-card i {
-            font-size: 40px;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-        
-        .contact-card h3 {
-            font-size: 20px;
-            margin-bottom: 15px;
-            color: var(--text);
-        }
-        
-        .dark-mode .contact-card h3 {
-            color: var(--text-dark);
-        }
-        
-        .contact-card p {
-            color: var(--text);
-        }
-        
-        .dark-mode .contact-card p {
-            color: var(--text-dark);
-        }
-        
-        footer {
-            background-color: var(--dark);
-            color: var(--light);
-            padding: 40px 0 20px;
-            text-align: center;
-        }
-        
-        .dark-mode footer {
-            background-color: var(--dark-dark);
-        }
-        
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .social-links {
-            display: flex;
-            margin-bottom: 20px;
-        }
-        
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            margin: 0 10px;
-            color: var(--light);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .social-links a:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-        }
-        
-        .copyright {
-            opacity: 0.7;
-            font-size: 14px;
-        }
-        
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-            }
-            
-            .nav-right {
-                margin-top: 20px;
-                width: 100%;
-                justify-content: space-between;
-            }
-            
-            nav ul {
-                margin-top: 0;
-            }
-            
-            nav ul li {
-                margin: 0 10px;
-            }
-            
-            .hero h1 {
-                font-size: 36px;
-            }
-            
-            .hero p {
-                font-size: 18px;
-            }
-            
-            .btn {
-                display: block;
-                margin: 10px auto;
-                max-width: 200px;
-            }
-            
-            .btn-outline {
-                margin-left: auto;
-                margin-right: auto;
-            }
-            
-            .section-title h2 {
-                font-size: 30px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MANZS MODZ - Profil & Store Futuristik</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+  body, html{height:100%;background:#0b0c17;color:#fff;scroll-behavior:smooth;}
+
+  /* Partikel Canvas */
+  canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;}
+
+  /* Container */
+  .container{max-width:500px;margin:0 auto;padding:50px 20px;text-align:center;transition:all 0.5s;}
+
+  /* Profil Section */
+  .profile img{
+    width:180px;height:180px;border-radius:50%;
+    border:3px solid #ff00ff;box-shadow:0 0 25px #ff00ff50;
+    transition:0.5s;
+  }
+  .profile img:hover{transform:scale(1.2) rotate(15deg);box-shadow:0 0 60px #ff66ff;}
+  .profile h1{font-size:2.8em;margin:20px 0;color:#ff00ff;animation:slideDown 1s;}
+  .profile p{font-size:1.1em;opacity:0.85;line-height:1.6;margin-bottom:30px;animation:fadeIn 1.5s;}
+
+  /* Social Buttons Vertical */
+  .socials{display:flex;flex-direction:column;gap:20px;align-items:center;margin-bottom:40px;}
+  .socials a{
+    display:block;padding:15px 50px;border-radius:25px;
+    background:rgba(255,255,255,0.05);
+    color:#ff00ff;text-decoration:none;font-weight:600;
+    transition:0.4s;box-shadow:0 5px 15px #ff00ff30;
+    width:100%;max-width:250px;text-align:center;
+  }
+  .socials a:hover{
+    transform:scale(1.1);
+    box-shadow:0 10px 30px #ff66ff80;
+    background:linear-gradient(45deg,#ff00ff,#ff66ff);
+    color:#fff;
+  }
+
+  /* Button Store */
+  .store-btn{
+    display:inline-block;padding:15px 35px;
+    border-radius:25px;
+    font-size:1.2em;font-weight:700;
+    background:linear-gradient(45deg,#ff00ff,#ff66ff);
+    color:#fff;text-decoration:none;
+    transition:0.4s;box-shadow:0 5px 20px #ff00ff50;
+    margin-bottom:50px;
+  }
+  .store-btn:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 60px #ff66ff;
+  }
+
+  /* Store Section */
+  #store{max-width:1000px;margin:0 auto;padding:50px 20px;text-align:center;transition:all 0.5s;}
+  #store h2{color:#ff00ff;margin-bottom:40px;font-size:2.5em;}
+
+  .store-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;}
+  .card{
+    background: rgba(255,255,255,0.05);
+    padding:25px;
+    border-radius:20px;
+    text-align:center;
+    transition:0.5s;
+    backdrop-filter: blur(15px);
+    box-shadow:0 0 10px #ff00ff20;
+    position:relative;
+    overflow:hidden;
+  }
+  .card:hover{
+    transform: translateY(-15px) scale(1.05);
+    box-shadow:0 15px 50px #ff00ff80;
+  }
+  .card img{
+    width:120px;height:120px;margin-bottom:15px;
+    transition:0.5s;
+  }
+  .card img:hover{transform:scale(1.3) rotate(-10deg);}
+  .card h3{color:#ff00ff;margin-bottom:10px;transition:0.3s;}
+  .card p{opacity:0.8;margin-bottom:10px;}
+  .card .price{color:#ff66ff;font-weight:700;font-size:1.2em;margin-bottom:15px;}
+  .card button{
+    background:linear-gradient(45deg,#ff00ff,#ff66ff);
+    border:none;
+    padding:10px 25px;
+    border-radius:25px;
+    color:#fff;
+    cursor:pointer;
+    font-weight:700;
+    font-size:1em;
+    transition:0.3s;
+    box-shadow:0 5px 15px #ff00ff40;
+    position:relative;
+    overflow:hidden;
+  }
+  .card button::after{
+    content:"";
+    position:absolute;
+    top:0; left:-100%;
+    width:100%; height:100%;
+    background:rgba(255,255,255,0.1);
+    transition:0.4s;
+  }
+  .card button:hover::after{
+    left:0;
+  }
+  .card button:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 60px #ff66ff;
+  }
+
+  /* Popup */
+  .popup{
+    position:fixed;top:0;left:0;width:100%;height:100%;
+    background:rgba(0,0,0,0.8);display:none;justify-content:center;align-items:center;
+    z-index:999;animation:fadeIn 0.5s;
+  }
+  .popup-content{
+    background:#0b0c17;padding:40px;border-radius:25px;text-align:center;
+    box-shadow:0 0 50px #ff00ff70;max-width:400px;width:90%;
+  }
+  .popup-content h3{color:#ff00ff;margin-bottom:20px;}
+  .popup-content button{margin-top:20px;}
+
+  /* Animations */
+  @keyframes slideDown{
+    0%{opacity:0;transform:translateY(-50px);}
+    100%{opacity:1;transform:translateY(0);}
+  }
+  @keyframes fadeIn{
+    0%{opacity:0;}
+    100%{opacity:1;}
+  }
+</style>
 </head>
 <body>
-    <header>
-        <div class="container header-content">
-            <div class="logo">
-                <i class="fas fa-server"></i>
-                <span>Pterodactyl Panel</span>
-            </div>
-            <div class="nav-right">
-                <nav>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#pricing">Paket</a></li>
-                        <li><a href="#contact">Kontak</a></li>
-                    </ul>
-                </nav>
-                <button class="theme-toggle" id="themeToggle">
-                    <i class="fas fa-moon"></i>
-                </button>
-            </div>
-        </div>
-    </header>
 
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>MARKET BY JOJOSHOP</h1>
-            <p>Solusi terbaik untuk manajemen server game Anda dengan performa tinggi dan stabilitas maksimal. Dapatkan panel berkualitas dengan harga terjangkau.</p>
-            <a href="#pricing" class="btn">Lihat Paket</a>
-            <a href="https://wa.me/6283161207895" class="btn btn-outline">Hubungi Kami</a>
-        </div>
-    </section>
+<div class="container profile">
+  <img src="https://files.catbox.moe/kxmhpm.jpg" alt="Profil">
+  <h1>MANZS MODZ</h1>
+  <p>Selamat Datang! Kamu bisa menghubungi saya lewat TikTok, YouTube, WhatsApp, dan Telegram. Lihat produk menarik di bawah.</p>
+  
+  <!-- Social Links Vertikal -->
+  <div class="socials">
+    <a href="https://www.tiktok.com/" target="_blank">TikTok</a>
+    <a href="https://www.youtube.com/" target="_blank">YouTube</a>
+    <a href="https://wa.me/1234567890" target="_blank">WhatsApp</a>
+    <a href="https://t.me/username" target="_blank">Telegram</a>
+  </div>
 
-    <section class="pricing" id="pricing">
-        <div class="container">
-            <div class="section-title">
-                <h2>Paket Harga</h2>
-                <p>Pilih paket yang sesuai dengan kebutuhan server game Anda. Kami menawarkan berbagai pilihan RAM dengan harga kompetitif.</p>
-            </div>
-            
-            <div class="pricing-grid">
-                <!-- Paket 1GB -->
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>1GB RAM</h3>
-                        <div class="pricing-price">Rp 2.000</div>
-                        <div class="pricing-period">per bulan</div>
-                    </div>
-                    <div class="pricing-body">
-                        <ul class="pricing-features">
-                            <li><i class="fas fa-check"></i> RAM 1GB</li>
-                            <li><i class="fas fa-check"></i> CPU 1 Core</li>
-                            <li><i class="fas fa-check"></i> Storage 1000GB</li>
-                            <li><i class="fas fa-check"></i> Unlimited Bandwidth</li>
-                            <li><i class="fas fa-check"></i> DDoS Protection</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-footer">
-                        <a href="https://wa.me/6283161207895?text=HALO%20SAYA%20MAU%20BUY%20PANEL%20PTERODACTYL%20RAM%201GB" class="btn btn-block">Pesan Sekarang</a>
-                    </div>
-                </div>
-                
-                <!-- Paket 2GB -->
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>2GB RAM</h3>
-                        <div class="pricing-price">Rp 3.000</div>
-                        <div class="pricing-period">per bulan</div>
-                    </div>
-                    <div class="pricing-body">
-                        <ul class="pricing-features">
-                            <li><i class="fas fa-check"></i> RAM 2GB</li>
-                            <li><i class="fas fa-check"></i> CPU 2 Core</li>
-                            <li><i class="fas fa-check"></i> Storage 2000GB</li>
-                            <li><i class="fas fa-check"></i> Unlimited Bandwidth</li>
-                            <li><i class="fas fa-check"></i> DDoS Protection</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-footer">
-                        <a href="https://wa.me/6283161207895?text=HALO%20SAYA%20MAU%20BUY%20PANEL%20PTERODACTYL%20RAM%202GB" class="btn btn-block">Pesan Sekarang</a>
-                    </div>
-                </div>
-                
-                <!-- Paket 3GB -->
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>3GB RAM</h3>
-                        <div class="pricing-price">Rp 4.000</div>
-                        <div class="pricing-period">per bulan</div>
-                    </div>
-                    <div class="pricing-body">
-                        <ul class="pricing-features">
-                            <li><i class="fas fa-check"></i> RAM 3GB</li>
-                            <li><i class="fas fa-check"></i> CPU 3 Core</li>
-                            <li><i class="fas fa-check"></i> Storage 3000GB</li>
-                            <li><i class="fas fa-check"></i> Unlimited Bandwidth</li>
-                            <li><i class="fas fa-check"></i> DDoS Protection</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-footer">
-                        <a href="https://wa.me/6283161207895?text=HALO%20SAYA%20MAU%20BUY%20PANEL%20PTERODACTYL%20RAM%203GB" class="btn btn-block">Pesan Sekarang</a>
-                    </div>
-                </div>
-                
-                <!-- Paket 4GB -->
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>4GB RAM</h3>
-                        <div class="pricing-price">Rp 5.000</div>
-                        <div class="pricing-period">per bulan</div>
-                    </div>
-                    <div class="pricing-body">
-                        <ul class="pricing-features">
-                            <li><i class="fas fa-check"></i> RAM 4GB</li>
-                            <li><i class="fas fa-check"></i> CPU 4 Core</li>
-                            <li><i class="fas fa-check"></i> Storage 4000GB</li>
-                            <li><i class="fas fa-check"></i> Unlimited Bandwidth</li>
-                            <li><i class="fas fa-check"></i> DDoS Protection</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-footer">
-                        <a href="https://wa.me/6283161207895?text=HALO%20SAYA%20MAU%20BUY%20PANEL%20PTERODACTYL%20RAM%204GB" class="btn btn-block">Pesan Sekarang</a>
-                    </div>
-                </div>
-                
-                <!-- Paket 5GB -->
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>5GB RAM</h3>
-                        <div class="pricing-price">Rp 6.000</div>
-                        <div class="pricing-period">per bulan</div>
-                    </div>
-                    <div class="pricing-body">
-                        <ul class="pricing-features">
-                            <li><i class="fas fa-check"></i> RAM 5GB</li>
-                            <li><i class="fas fa-check"></i> CPU 5 Core</li>
-                            <li><i class="fas fa-check"></i> Storage 5000GB</li>
-                            <li><i class="fas fa-check"></i> Unlimited Bandwidth</li>
-                            <li><i class="fas fa-check"></i> DDoS Protection</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-footer">
-                        <a href="https://wa.me/6283161207895?text=HALO%20SAYA%20MAU%20BUY%20PANEL%20PTERODACTYL%20RAM%205GB" class="btn btn-block">Pesan Sekarang</a>
-                    </div>
-                </div>
-                
-                <!-- Paket 6GB -->
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>6GB RAM</h3>
-                        <div class="pricing-price">Rp 7.000</div>
-                        <div class="pricing-period">per bulan</div>
-                    </div>
-                    <div class="pricing-body">
-                        <ul class="pricing-features">
-                            <li><i class="fas fa-check"></i> RAM 6GB</li>
-                            <li><i class="fas fa-check"></i> CPU 6 Core</li>
-                            <li><i class="fas fa-check"></i> Storage 6000GB</li>
-                            <li><i class="fas fa-check"></i> Unlimited Bandwidth</li>
-                            <li><i class="fas fa-check"></i> DDoS Protection</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-footer">
-                        <a href="https://wa.me/6283161207895?text=HALO%20SAYA%20MAU%20BUY%20PANEL%20PTERODACTYL%20RAM%206GB" class="btn btn-block">Pesan Sekarang</a>
-                    </div>
-                </div>
-                
-                <!-- Paket 7GB -->
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>7GB RAM</h3>
-                        <div class="pricing-price">Rp 8.000</div>
-                        <div class="pricing-period">per bulan</div>
-                    </div>
-                    <div class="pricing-body">
-                        <ul class="pricing-features">
-                            <li><i class="fas fa-check"></i> RAM 7GB</li>
-                            <li><i class="fas fa-check"></i> CPU 7 Core</li>
-                            <li><i class="fas fa-check"></i> Storage 7000GB</li>
-                            <li><i class="fas fa-check"></i> Unlimited Bandwidth</li>
-                            <li><i class="fas fa-check"></i> DDoS Protection</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-footer">
-                        <a href="https://wa.me/6283161207895?text=HALO%20SAYA%20MAU%20BUY%20PANEL%20PTERODACTYL%20RAM%207GB" class="btn btn-block">Pesan Sekarang</a>
-                    </div>
-                </div>
-                
-                <!-- Paket 8GB -->
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>8GB RAM</h3>
-                        <div class="pricing-price">Rp 9.000</div>
-                        <div class="pricing-period">per bulan</div>
-                    </div>
-                    <div class="pricing-body">
-                        <ul class="pricing-features">
-                            <li><i class="fas fa-check"></i> RAM 8GB</li>
-                            <li><i class="fas fa-check"></i> CPU 8 Core</li>
-                            <li><i class="fas fa-check"></i> Storage 8000GB</li>
-                            <li><i class="fas fa-check"></i> Unlimited Bandwidth</li>
-                            <li><i class="fas fa-check"></i> DDoS Protection</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-footer">
-                        <a href="https://wa.me/6283161207895?text=HALO%20SAYA%20MAU%20BUY%20PANEL%20PTERODACTYL%20RAM%208GB" class="btn btn-block">Pesan Sekarang</a>
-                    </div>
-                </div>
-                
-                <!-- Paket 9GB -->
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>9GB RAM</h3>
-                        <div class="pricing-price">Rp 10.000</div>
-                        <div class="pricing-period">per bulan</div>
-                    </div>
-                    <div class="pricing-body">
-                        <ul class="pricing-features">
-                            <li><i class="fas fa-check"></i> RAM 9GB</li>
-                            <li><i class="fas fa-check"></i> CPU 9 Core</li>
-                            <li><i class="fas fa-check"></i> Storage 9000GB</li>
-                            <li><i class="fas fa-check"></i> Unlimited Bandwidth</li>
-                            <li><i class="fas fa-check"></i> DDoS Protection</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-footer">
-                        <a href="https://wa.me/6283161207895?text=HALO%20SAYA%20MAU%20BUY%20PANEL%20PTERODACTYL%20RAM%209GB" class="btn btn-block">Pesan Sekarang</a>
-                    </div>
-                </div>
-                
-                <!-- Paket 10GB -->
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>10GB RAM</h3>
-                        <div class="pricing-price">Rp 11.000</div>
-                        <div class="pricing-period">per bulan</div>
-                    </div>
-                    <div class="pricing-body">
-                        <ul class="pricing-features">
-                            <li><i class="fas fa-check"></i> RAM 10GB</li>
-                            <li><i class="fas fa-check"></i> CPU 10 Core</li>
-                            <li><i class="fas fa-check"></i> Storage 10000GB</li>
-                            <li><i class="fas fa-check"></i> Unlimited Bandwidth</li>
-                            <li><i class="fas fa-check"></i> DDoS Protection</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-footer">
-                        <a href="https://wa.me/6283161207895?text=HALO%20SAYA%20MAU%20BUY%20PANEL%20PTERODACTYL%20RAM%2010" class="btn btn-block">Pesan Sekarang</a>
-                    </div>
-                </div>
-                
-                <!-- Paket Unlimited -->
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>Unlimited RAM</h3>
-                        <div class="pricing-price">Custom</div>
-                        <div class="pricing-period">Hubungi Kami</div>
-                    </div>
-                    <div class="pricing-body">
-                        <ul class="pricing-features">
-                            <li><i class="fas fa-check"></i> RAM Unlimited</li>
-                            <li><i class="fas fa-check"></i> CPU Dedicated</li>
-                            <li><i class="fas fa-check"></i> Storage SSD NVMe</li>
-                            <li><i class="fas fa-check"></i> Unlimited Bandwidth</li>
-                            <li><i class="fas fa-check"></i> DDoS Protection</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-footer">
-                        <a href="https://wa.me/6283161207895?text=HALO%20SAYA%20MAU%20BUY%20PANEL%20PTERODACTYL%20RAM%20UNLIMITED" class="btn btn-block">Hubungi Kami</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- Button Store -->
+  <a href="#store" class="store-btn">Lihat Produk</a>
+</div>
 
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Kontak Kami</h2>
-                <p>Hubungi kami untuk informasi lebih lanjut atau jika Anda memiliki pertanyaan tentang layanan kami.</p>
-            </div>
-            
-            <div class="contact-info">
-                <div class="contact-card">
-                    <i class="fab fa-whatsapp"></i>
-                    <h3>WhatsApp</h3>
-                    <p>+62 831-6120-7896</p>
-                    <a href="https://wa.me/6283161207895" class="btn" style="margin-top: 15px;">Chat Sekarang</a>
-                </div>
-                
-                <div class="contact-card">
-                    <i class="fas fa-envelope"></i>
-                    <h3>Email</h3>
-                    <p>admin@pterodactyl-panel.com</p>
-                </div>
-                
-                <div class="contact-card">
-                    <i class="fas fa-clock"></i>
-                    <h3>Jam Operasional</h3>
-                    <p>Senin - Minggu<br>24/7 Nonstop</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Store Section -->
+<div id="store">
+  <h2>Produk Kami</h2>
+  <div class="store-grid">
+    <div class="card">
+      <img src="https://files.catbox.moe/kxmhpm.jpg" alt="Produk 1">
+      <h3>Produk 1</h3>
+      <p>Deskripsi singkat produk 1.</p>
+      <div class="price">Rp50.000</div>
+      <button onclick="openPopup('Produk 1', 'Rp50.000')">Beli Sekarang</button>
+    </div>
+    <div class="card">
+      <img src="https://files.catbox.moe/kxmhpm.jpg" alt="Produk 2">
+      <h3>Produk 2</h3>
+      <p>Deskripsi singkat produk 2.</p>
+      <div class="price">Rp75.000</div>
+      <button onclick="openPopup('Produk 2', 'Rp75.000')">Beli Sekarang</button>
+    </div>
+    <div class="card">
+      <img src="https://files.catbox.moe/kxmhpm.jpg" alt="Produk 3">
+      <h3>Produk 3</h3>
+      <p>Deskripsi singkat produk 3.</p>
+      <div class="price">Rp100.000</div>
+      <button onclick="openPopup('Produk 3', 'Rp100.000')">Beli Sekarang</button>
+    </div>
+    <div class="card">
+      <img src="https://files.catbox.moe/kxmhpm.jpg" alt="Produk 4">
+      <h3>Produk 4</h3>
+      <p>Deskripsi singkat produk 4.</p>
+      <div class="price">Rp125.000</div>
+      <button onclick="openPopup('Produk 4', 'Rp125.000')">Beli Sekarang</button>
+    </div>
+  </div>
+</div>
 
-    <footer>
-        <div class="container footer-content">
-            <div class="logo" style="color: var(--light); margin-bottom: 20px;">
-                <i class="fas fa-server"></i>
-                <span>Pterodactyl Panel</span>
-            </div>
-            
-            <div class="social-links">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-discord"></i></a>
-            </div>
-            
-            <p class="copyright">&copy; 2023 Pterodactyl Panel. All Rights Reserved.</p>
-        </div>
-    </footer>
+<!-- Popup -->
+<div class="popup" id="popup">
+  <div class="popup-content">
+    <h3 id="popup-title"></h3>
+    <p id="popup-price"></p>
+    <button onclick="closePopup()">Tutup</button>
+  </div>
+</div>
 
-    <script>
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-        
-        // Sticky header on scroll
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            header.classList.toggle('sticky', window.scrollY > 0);
-        });
-        
-        // Dark/Light mode toggle
-        const themeToggle = document.getElementById('themeToggle');
-        const icon = themeToggle.querySelector('i');
-        
-        // Check for saved user preference or use system preference
-        const savedTheme = localStorage.getItem('theme');
-        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
-        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
-            document.body.classList.add('dark-mode');
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
-        }
-        
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            
-            if (document.body.classList.contains('dark-mode')) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-                localStorage.setItem('theme', 'dark');
-            } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-                localStorage.setItem('theme', 'light');
-            }
-        });
-    </script>
+<!-- Particles Background -->
+<canvas id="particles"></canvas>
+<script>
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let particles = [];
+const colors = ['#ff00ff','#ff66ff','#ff33cc'];
+
+function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+window.addEventListener('resize', resize);
+resize();
+
+for(let i=0;i<120;i++){
+  particles.push({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height,
+    r:Math.random()*3+1,
+    dx:(Math.random()-0.5)*1.5,
+    dy:(Math.random()-0.5)*1.5,
+    color:colors[Math.floor(Math.random()*colors.length)]
+  });
+}
+
+let mouse = {x:null, y:null};
+window.addEventListener('mousemove', function(e){ mouse.x=e.x; mouse.y=e.y; });
+
+function connectParticles(p1,p2){
+  let distance = Math.sqrt((p1.x-p2.x)**2 + (p1.y-p2.y)**2);
+  if(distance<100){
+    ctx.beginPath();
+    ctx.strokeStyle='rgba(255,0,255,'+(1-distance/100)+')';
+    ctx.lineWidth=1;
+    ctx.moveTo(p1.x,p1.y);
+    ctx.lineTo(p2.x,p2.y);
+    ctx.stroke();
+  }
+}
+
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  for(let p of particles){
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle=p.color;
+    ctx.fill();
+    p.x += p.dx;
+    p.y += p.dy;
+
+    if(p.x<0||p.x>canvas.width)p.dx*=-1;
+    if(p.y<0||p.y>canvas.height)p.dy*=-1;
+
+    if(mouse.x && mouse.y){
+      let dx = mouse.x - p.x;
+      let dy = mouse.y - p.y;
+      let dist = Math.sqrt(dx*dx + dy*dy);
+      if(dist<100){ p.x -= dx/20; p.y -= dy/20; }
+    }
+  }
+
+  for(let i=0;i<particles.length;i++){
+    for(let j=i;j<particles.length;j++){
+      connectParticles(particles[i],particles[j]);
+    }
+  }
+
+  requestAnimationFrame(animate);
+}
+animate();
+
+/* Popup Functions */
+function openPopup(title, price){
+  document.getElementById('popup-title').innerText = title;
+  document.getElementById('popup-price').innerText = price;
+  document.getElementById('popup').style.display = 'flex';
+}
+function closePopup(){
+  document.getElementById('popup').style.display = 'none';
+}
+</script>
 </body>
 </html>
